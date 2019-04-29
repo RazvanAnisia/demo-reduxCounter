@@ -1,0 +1,16 @@
+So in async situation, instead of invoking the dispatch function inside the component 
+it is invoked inside of the ASYNC action:
+So inside the component, we will now dispatch an action for a thunk
+
+const simpleLogin = user => ({ type: LOGIN, user })
+
+const thunkedLogin = () =>     // action creator, when invoked…
+  (dispatch) =>                        // …returns a thunk, which when invoked…
+    axios.get('/api/auth/me')  // …performs the actual effect.
+    .then(res => res.data)
+    .then(user => {
+      store.dispatch(simpleLogin(user))
+    })
+
+// somewhere in component:
+store.dispatch(thunkedLogin()) // dispatches the thunk to the store.
