@@ -1,3 +1,5 @@
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const FETCH_POSTS = 'FETCH_POSTS';
+export const LOADING_POSTS = 'LOADING';
+export const LOADING_FINISHED = 'LOADING_FINISHED';

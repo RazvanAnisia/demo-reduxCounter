@@ -19,13 +19,16 @@ class Posts extends Component {
         </div>  
     ) )
     : null;
+    const loading =  this.props.loading.loading ? (<div class="loader"></div>) : null;
+  
 
    return (
       <div className='posts-container'>
         <h1>Posts</h1>
         <button  className='posts-button' onClick={this.fetchDataHandler}>Show posts</button>
         <div className='posts'>
-          {displayedPosts}
+          { displayedPosts}
+          { loading }
         </div>
       </div>
     )
@@ -35,7 +38,8 @@ class Posts extends Component {
 //we map to state.posts because that is what we mapped in combineReducers 
 function mapStateToProps (state) {
     return {
-        state:state.posts
+        state:state.posts,
+        loading:state.loading
     }
 }
 
