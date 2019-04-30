@@ -2,28 +2,43 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import fetchPostsAsync  from '../actions/postsActions';
 
-class Counter extends Component {
+class Posts extends Component {
   //dispatch() is passed down as a prop, because of mapStateToProps in connect()
+  //calling the async action creator, so we can get the api apyload into the state
   fetchDataHandler = () => {
-    console.log(this.props.fetchPostsAsync())
+   this.props.fetchPostsAsync();
   }
   
   render() {
-   
-    return(
+    const posts = this.props.state.posts;
+    const displayedPosts =  posts 
+    ? posts.map(post =>(
+        <div key={post.id} classname='post'>
+          <h5 className='post-title'>{post.title.toUpperCase()}</h5>
+          <p className='post-body'>{post.body}</p>
+        </div>  
+    ) )
+    : null;
+
+   return (
       <div className='posts-container'>
         <h1>Posts</h1>
-        <button onClick={this.fetchDataHandler}>Show posts</button>
+        <button  className='posts-button' onClick={this.fetchDataHandler}>Show posts</button>
+        <div className='posts'>
+          {displayedPosts}
+        </div>
       </div>
     )
   }
 }
 
-//we map to state.counter because that is what we mapped in combineReducers 
+//we map to state.posts because that is what we mapped in combineReducers 
 function mapStateToProps (state) {
     return {
         state:state.posts
     }
 }
 
-export default connect(mapStateToProps, {fetchPostsAsync} )(Counter);
+//we need to padd fetchPostsAsync in connect, so we can have it as a props on the component
+//so we can call the function, on the show Posts handler
+export default connect(mapStateToProps, {fetchPostsAsync} )(Posts);

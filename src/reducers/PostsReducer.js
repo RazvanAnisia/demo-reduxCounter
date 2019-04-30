@@ -1,16 +1,13 @@
 import { FETCH_POSTS } from '../actions/types';
 
-const initialState = {
-    posts:{}
-}
 
-const postsReducer = (state = initialState, action )=> {
+const postsReducer = (state = {}, action )=> {
     switch (action.type) {
         case FETCH_POSTS:
-          return { ...state, posts:action.payload }
-          console.log('fetch')
+        //create a new state.using the old state and adding the api payload
+         return { ...state, posts:action.payload }
         default:
-          return state;
+         return state;
     }
 }
 

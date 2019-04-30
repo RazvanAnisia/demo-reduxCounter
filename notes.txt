@@ -14,3 +14,4 @@ const thunkedLogin = () =>     // action creator, when invoked…
 
 // somewhere in component:
 store.dispatch(thunkedLogin()) // dispatches the thunk to the store.
+

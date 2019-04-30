@@ -22,3 +22,25 @@ code {
 .counter-container h1{
   text-align: center;
 }
+.posts-container {
+  border:1px solid black;
+  margin:3rem;
+  padding:20px;
+  
+}
+.posts-button {
+  background: white;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 4px;
+}
+button {
+  cursor: pointer;
+}
+button:hover {
+ box-shadow: 1px 1px 5px  rgb(122, 118, 118);
+}
+button:active {
+  transform:scale(1.04);
+  
+ }
